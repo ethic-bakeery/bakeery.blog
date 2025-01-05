@@ -1,0 +1,226 @@
+---
+title: "How to Safely Access the Dark Web and Gather Information Securely"
+description: "This guide provides essential tips on how to safely access the dark web and gather information while ensuring privacy and security"
+pubDate: "Jan 05, 2025"
+image: "/main/darkweb.jpeg"
+categories:
+  - Digital Privacy
+tags:
+  - Dark Web
+badge: "Pin"
+---
+
+
+import Collapse from "../../components/mdx/Collapse.astro";
+import Diff from "../../components/mdx/Diff.astro";
+import Error from "../../components/mdx/Error.astro";
+import Info from "../../components/mdx/Info.astro";
+import Kbd from "../../components/mdx/Kbd.astro";
+import Success from "../../components/mdx/Success.astro";
+import Warning from "../../components/mdx/Warning.astro";
+import TimeLine from "../../components/mdx/TimeLine.astro";
+import LinkCard from "../../components/mdx/LinkCard.astro";
+
+<Warning>
+  **Caution:** Accessing the dark web can expose you to illegal activities, cyber threats, and dangerous content. Always take proper security precautions, use secure browsing methods (e.g., Tor, VPNs), and ensure you are abiding by all applicable laws and regulations. This guide is for informational purposes only and should not be used for unlawful activities.
+</Warning>
+
+## Introduction to DarkWeb
+The dark web is a hidden part of the internet that is not indexed by traditional search engines like Google or Bing. It exists within a network known as the Deep Web, which is made up of sites that are not accessible through regular browsing. To access the dark web, users typically use specialized tools like Tor (The Onion Router), which anonymizes internet traffic, ensuring privacy and security.
+
+While the dark web can be a haven for privacy-conscious users, it is also notorious for hosting illegal activities such as the sale of drugs, weapons, and stolen data. Due to its anonymous nature, the dark web offers a space for individuals to communicate and share information without the risk of surveillance. However, it’s important to exercise extreme caution when exploring this part of the internet, as it can expose users to significant cybersecurity risk
+
+### Tools We Will Use
+
+1. `Linux Machine (Remux)`  
+   A secure and isolated environment for accessing the dark web.
+
+2. `Brave Browser`  
+   A privacy-focused browser that offers enhanced security features.
+
+3. `KeePass Password Manager`  
+   A reliable tool for managing and securing passwords.
+
+4. `ProtonVPN`  
+   A trustworthy VPN to protect your anonymity and encrypt your connection.
+
+5. `ProtonMail`  
+   A secure, encrypted email service for anonymous communication.
+
+I’ve had several questions from friends and classmates on how to access the dark web securely, and I realized that many of them have no idea how to do it safely. While it’s not illegal to access the dark web, one must be extra careful. Let's get started...
+
+### Installation of Remux
+
+First, ensure that you have a **hypervisor** installed. This can be VirtualBox, VMware, or any other virtual machine software. For this tutorial, we will be using **VirtualBox**. You can download it from the official website:  
+[Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
+Next, we’ll install **Remux**. To do this, visit the official website to download the **.ova** file:  
+[Download Remux Virtual Appliance](https://docs.remnux.org/install-distro/get-virtual-appliance)
+
+Once the download is complete, follow these steps:
+
+1. Open VirtualBox and go to **File** > **Import Appliance**.
+2. Click on the folder icon to locate and select the **.ova** file you just downloaded.
+3. Click **Start** to begin the import process.
+4. Wait for the virtual machine to boot up.
+
+And there you have it! You now have a fresh installation of **Remux**.
+
+### Installation of brave browser
+The instruction on how to download Brave Browser can be found on Brave official website [Download Brave Browser](https://brave.com/en-in/linux/)
+
+```bash 
+sudo apt install curl
+
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+sudo apt update
+
+sudo apt install brave-browser
+```
+### Install KeePass Password Manager
+
+KeePass is a great password manager that we'll use to securely store **onion links**, as well as **credentials** for marketplaces and forums. It's a good idea to have everything organized and managed in one place, making it easy to access later.
+
+To install KeePass on your system, follow these steps:
+
+**Update your package list and Install KeePass**:
+   ```bash
+   sudo apt update
+   sudo apt install keepass2
+````
+
+After the installation is complete, launch KeePass and create your master key to log into the password manager. This will serve as your main access point for securely managing your passwords and sensitive information.
+
+## Installation and Setting up of VPN
+
+- Do I really need a VPN?, well it depends 
+Using a VPN with the Tor network is often suggested for added privacy, but it’s not always necessary and could introduce risks. Here’s why:  
+
+1. When to Use a VPN  
+- If your ISP blocks Tor traffic or monitors your internet usage:
+  A VPN can mask your activity from the ISP and allow you to access Tor.  
+
+- If your ISP doesn’t restrict Tor:
+  Using Tor directly is safer and avoids adding unnecessary layers.  
+
+2. Risks of Using a VPN  
+- Trust Shift:
+  A VPN hides your activity from your ISP but makes the VPN provider a potential point of trust. If the VPN logs your data, it could be misused or exposed.  
+
+- Decrypted Traffic Risk:
+  Before your data enters the Tor network, it passes through the VPN server. If your traffic is not encrypted (e.g., HTTP instead of HTTPS), it can be viewed or logged by the VPN.  
+
+3. Tor’s Built-In Privacy  
+- Tor anonymizes traffic by routing it through multiple encrypted layers (nodes).  
+- Your real IP is only visible to the first node (entry node).  
+- Using Tor directly eliminates the risk of VPN providers logging your data.  
+
+4. Best Practices  
+- Only use a VPN if necessary and choose one with a strict no-logs policy.  
+- Always verify that websites use *HTTPS* to protect data from exit node monitoring.  
+- Use Tor directly if you don’t face ISP restrictions for optimal privacy.  
+
+In short, while VPNs can help in specific cases, they aren’t always safer, especially if the provider is unreliable. Tor’s design already prioritizes anonymity when used correctly.
+
+### List of some Trusted VPN Providers for Safe Browsing
+
+1. **ProtonVPN**  
+   A privacy-focused VPN with a strong commitment to security and no-logs policy.  
+   [Visit ProtonVPN](https://protonvpn.com)
+
+2. **ExpressVPN**  
+   Known for its fast speeds and strong encryption, it’s widely recommended for secure browsing.  
+   [Visit ExpressVPN](https://www.expressvpn.com)
+
+3. **NordVPN**  
+   Offers excellent privacy features, including double encryption and a no-logs policy.  
+   [Visit NordVPN](https://www.nordvpn.com)
+
+4. **Mullvad VPN**  
+   A privacy-centric VPN that doesn’t require any personal information for sign-up.  
+   [Visit Mullvad VPN](https://mullvad.net)
+
+5. **CyberGhost VPN**  
+   Offers a wide range of servers and is known for its robust security features and privacy commitment.  
+   [Visit CyberGhost VPN](https://www.cyberghostvpn.com)
+
+6. **Surfshark**  
+   A budget-friendly option with a strong emphasis on privacy, security, and unlimited device connections.  
+   [Visit Surfshark](https://surfshark.com)
+
+7. **Private Internet Access (PIA)**  
+   A reliable VPN with strong encryption and a no-logs policy, ideal for privacy-conscious users.  
+   [Visit PIA](https://www.privateinternetaccess.com)
+
+These VPNs are trusted by privacy advocates and are excellent choices when accessing the dark web or browsing securely. you can sign up on anyone of the above and get connected
+
+## Creating a ProtonMail Account
+
+It’s a good idea to have a secure email account for registering on services where you don’t want to reveal your real identity or if you want to communicate anonymously. ProtonMail offers a great solution for this, allowing you to protect your privacy with end-to-end encryption.
+
+You can create a free anonymous email account here:  
+[Sign up for ProtonMail](https://proton.me/mail)
+
+If you want additional features, you can consider upgrading to a paid plan:  
+[View ProtonMail Pricing](https://proton.me/mail/pricing)
+
+<Info>
+  Make sure all the above-mentioned tools are installed before proceeding. Once you're ready, let's begin accessing the dark web safely and ethically.
+</Info>
+
+As you might know, **onion links** are not easily readable or memorable. To access dark web sites, you typically need to search for collections of onion links. You can find these links on various platforms, but always keep in mind the risks involved.
+
+### Sources to Find Onion Links:
+1. **GitHub**  
+   Many repositories compile collections of onion links. It's a great resource for discovering dark web websites.  
+   - [DeepDarkCTI Forum Links](https://github.com/fastfire/deepdarkCTI/blob/main/forum.md)
+   - [Awesome Onion Links](https://github.com/5ky1ar/Awesome-Onion-Links)
+   - [0x00009b/onion_links](https://gist.github.com/0x00009b/8cf0c2b0e147dc0c1114fb32b5d2d7a3)
+   - [ Search Engine](http://2fd6cemt4gmccflhm6imvdfvli3nf7zn6rfrwpsy7uhxrgbypvwf5fad.onion/)
+   
+2. **Telegram**  
+   Various Telegram channels often share onion links, but be cautious as they might link to dangerous sites.
+
+3. **Blogs**  
+   Several cybersecurity blogs compile lists of onion links, offering curated collections of dark web websites.
+
+4. **Dark Web Itself**  
+   Once you access the dark web, you may encounter hidden forums, directories, and search engines that list onion links.
+
+<Warning>
+  Dark Web Links (Caution: Accessing these links is at your own risk)
+
+  These links are provided for **informational purposes only**. I am not responsible for the content found at these URLs. Accessing these sites may expose you to **illegal content**, **malware**, and other **security risks**.
+
+  **Please exercise extreme caution.**
+</Warning>
+
+#### Now, Let's Access the Dark Web
+
+1. **Open Brave Browser**: Launch the Brave browser on your system.
+
+2. **Open a New Private Window with Tor**:  
+   Click on the **Customize and control Brave** icon (the three-line menu in the top right corner). From the dropdown, select **New private window with Tor**.
+
+      <img src="/public/main/img1.png" alt="Image of Brave browser" style={{ display: 'block', margin: '0 auto' }} />
+
+
+3. **Connection to Tor Network**:  
+   Once you open the new window, the browser will begin establishing a connection with the Tor network. The window will indicate that it is in **private mode**.
+
+      <img src="/public/main/img2.png" alt="Image of Brave browser" style={{ display: 'block', margin: '0 auto' }} />
+
+
+4. **Re-establishing Connection (If Needed)**:  
+   If the connection takes longer than expected, simply click to **re-establish the connection** to the Tor network.
+
+To access the GitHub repository from the provided links sample above, simply copy any of the links and paste it into the search bar. You can also use [Fresh Onion](http://freshcprpapf5tduki7olsr7k4dgrjzvqnzx323qkdlqn6yoy74qp6id.onion/) to find additional onion links.
+
+<img src="/public/main/fresh-onion.webp" alt="Image of Brave browser" style={{ display: 'block', margin: '0 auto' }} />
+
+<Info>
+I hope you enjoyed this guide on how to securely access the dark web. Remember, it’s important to dive deeper into understanding how to browse safely and protect yourself while exploring this space.
+</Info>

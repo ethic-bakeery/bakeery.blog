@@ -1,0 +1,53 @@
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Collapse from "../components/mdx/Collapse.astro";
+import Diff from "../components/mdx/Diff.astro";
+import Error from "../components/mdx/Error.astro";
+import Info from "../components/mdx/Info.astro";
+import Kbd from "../components/mdx/Kbd.astro";
+import Success from "../components/mdx/Success.astro";
+import Warning from "../components/mdx/Warning.astro";
+import TimeLine from "../components/mdx/TimeLine.astro";
+import LinkCard from "../components/mdx/LinkCard.astro";
+
+<BaseLayout title="Project">
+  <BaseCard title="Project">
+# Project
+
+---
+
+  </BaseCard>
+  <ProjectCard
+    title="Password Manager"
+    image="/public/main/password-manager.webp"
+    desc="A GUI Password manager in Java！"
+    url="https://github.com/ethic-bakeery/GUI-Password-manager"
+    badge="Java"
+    target="_self"
+  />
+  <ProjectCard
+    title="Terminal Base Email Analyser"
+    image="/public/main/password-manager.png"
+    desc="Terminal Base Email Analyser,it extract vital information such as attachments, URLs, domains, IP addresses, and perform threat intelligence checks."
+    url="https://github.com/ethic-bakeery/email_analyzer"
+    badge="Python"
+    target="_self"
+  />
+  <ProjectCard
+    title="AYNC"
+    image="/public/main/YNL.png"
+    desc="ANYC transformative platform designed to engage and empower Nigerian youth in the reformation of the country's political system."
+    url="https://github.com/ethic-bakeery/YNL"
+    badge="Django"
+    target="_self"
+  />
+  <ProjectCard
+    title="SystemTool"
+    image="/public/main/SystemTool.png"
+    desc="SystemTool is a Bash script designed to help users manage various system-related tasks on Unix-based systems. It provides a menu-driven interface to perform tasks such as displaying system information, monitoring processes, managing files and directories, performing security audits, and more.."
+    url="https://github.com/ethic-bakeery/bash-mini-project"
+    badge="Bash"
+    target="_self"
+  />
+</BaseLayout>
