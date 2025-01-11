@@ -104,7 +104,7 @@ export const socialIcons = [
     svg: "ri:bilibili-line",
   },
   {
-    href: "/rss.xml",
+    href: "https://medium.com/@bakeery",
     ariaLabel: "RSS Feed",
     title: "RSS Feed",
     svg: "ri:rss-line",
