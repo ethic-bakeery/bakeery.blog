@@ -1,0 +1,212 @@
+---
+title: "REvil Corp"
+description: "You are involved in an incident response engagement and need to analyze an infected host using Redline"
+image: /Revil-corp/icon.png
+pubDate: 2025-02-01
+categories:
+  - tryhackme
+tags:
+  - incident response
+---
+
+import Collapse from "../../components/mdx/Collapse.astro";
+import Diff from "../../components/mdx/Diff.astro";
+import Error from "../../components/mdx/Error.astro";
+import Info from "../../components/mdx/Info.astro";
+import Kbd from "../../components/mdx/Kbd.astro";
+import Success from "../../components/mdx/Success.astro";
+import Warning from "../../components/mdx/Warning.astro";
+import TimeLine from "../../components/mdx/TimeLine.astro";
+import LinkCard from "../../components/mdx/LinkCard.astro";
+
+## Investigating the Compromised Endpoint
+
+**Scenario**: One of the employees at Lockman Group contacted the IT department, frustrated that all his files had been renamed with an unfamiliar file extension. The IT team quickly identified the issue as a potential ransomware attack and escalated the case to the Incident Response team for further investigation.
+
+As the incident responder, your task is to analyze the compromised host using Redline, a powerful memory analysis tool. Let’s dive into the investigation!
+
+---
+
+#### **Question 1: What is the compromised employee's full name?**
+
+To begin, load the saved memory analysis located in the `Desktop/analysis` folder. In Redline, click on **Open Previous Analysis** under the **Analyze Data** section, as shown below:
+
+![Initial Redline Setup](/Revil-corp/1st.PNG)
+
+To answer Question 1, navigate to **System Information** in Redline. Here, you’ll find the currently logged-on user:
+
+![Question 1 Answer](/Revil-corp/q1-and-q2.PNG)
+
+<Collapse title="View Answer">
+  <Success>John Coleman</Success>
+</Collapse>
+
+---
+
+#### **Question 2: What is the operating system of the compromised host?**
+
+From the same **System Information** section, you can identify the operating system of the compromised host.
+
+<Collapse title="View Answer">
+  <Success>Windows 7 Home Premium 7601 Service Pack 1</Success>
+</Collapse>
+
+---
+
+#### **Question 3: What is the name of the malicious executable that the user opened?**
+
+Navigate to **File Download History** in Redline. Here, you’ll find the malicious file that the user downloaded:
+
+![Question 3 Answer](/Revil-corp/q3-and-q4.PNG)
+
+<Collapse title="View Answer">
+  <Success>WinRAR2021.exe</Success>
+</Collapse>
+
+---
+
+#### **Question 4: What is the full URL that the user visited to download the malicious binary? (include the binary as well)**
+
+From the same **File Download History** section, you can see the full URL used to download the malicious file.
+
+<Collapse title="View Answer">
+  <Success>http://192.168.75.129:4748/Documents/WinRAR2021.exe</Success>
+</Collapse>
+
+---
+
+#### **Question 5: What is the MD5 hash of the binary?**
+
+To find the MD5 hash of the malicious binary, navigate to the user’s **Downloads** folder in Redline. In the **File System** section, go to **Users > John Coleman > Downloads**. Search for the executable file (`WinRAR2021.exe`) in the search bar:
+
+![Search for Executable](/Revil-corp/q5-st1.PNG)
+
+Once you locate the file, double-click it to view its details. The MD5 hash will be displayed in the file information:
+
+![MD5 Hash](/Revil-corp/q5.PNG)
+
+<Collapse title="View Answer">
+  <Success>890a58f200dfff23165df9e1b088e58f</Success>
+</Collapse>
+
+---
+
+#### **Question 6: What is the size of the binary in kilobytes?**
+
+From the same file details window, you can see the size of the binary in kilobytes.
+
+<Collapse title="View Answer">
+  <Success>164</Success>
+</Collapse>
+
+---
+
+#### **Question 7: What is the extension to which the user's files got renamed?**
+
+The hint suggests checking the user’s Desktop for a readme file. Navigate to **File System > Users > John Coleman > Desktop** and look for files with modified dates. You’ll notice `password.txt...` was modified:
+
+![Modified File](/Revil-corp/q6.PNG)
+
+<Collapse title="View Answer">
+  <Success>.t48s39la</Success>
+</Collapse>
+
+---
+
+#### **Question 8: What is the number of files that got renamed and changed to that extension?**
+
+Use the **Timeline** feature in Redline to count the number of files with the `.t48s39la` extension. Enable the **Modified** and **Changed** filters and search for the extension:
+
+![Modified File Count](/Revil-corp/q7.PNG)
+
+<Collapse title="View Answer">
+  <Success>48</Success>
+</Collapse>
+
+---
+
+#### **Question 9: What is the full path to the wallpaper that got changed by an attacker, including the image name?**
+
+The hint suggests looking for `.bmp` files in the **Timeline**. Search for `.bmp` and enable the **Modified** and **Changed** filters:
+
+![Wallpaper Path](/Revil-corp/q8.PNG)
+
+<Collapse title="View Answer">
+  <Success>C:\Users\John Coleman\AppData\Local\Temp\hk8.bmp</Success>
+</Collapse>
+
+---
+
+#### **Question 10: The attacker left a note for the user on the Desktop; provide the name of the note with the extension.**
+
+On the user’s Desktop, you’ll find a file named `t48s39la-readme.txt`:
+
+![Left Note](/Revil-corp/q9.PNG)
+
+<Collapse title="View Answer">
+  <Success>t48s39la-readme.txt</Success>
+</Collapse>
+
+---
+
+#### **Question 11: The attacker created a folder "Links for United States" under C:\Users\John Coleman\Favorites\ and left a file there. Provide the name of the file.**
+
+Navigate to **File System > Users > John Coleman > Favorites > Links for United States**. You’ll find a file with a Spanish term in its name:
+
+![File in Favorites](/Revil-corp/q10.PNG)
+
+<Collapse title="View Answer">
+  <Success>GobiernoUSA.gov.url.t48s39la</Success>
+</Collapse>
+
+---
+
+#### **Question 12: There is a hidden file that was created on the user's Desktop that has 0 bytes. Provide the name of the hidden file.**
+
+Search for `.lock` files on the Desktop. You’ll find a hidden file with 0 bytes:
+
+![Hidden File](/Revil-corp/q11.PNG)
+
+<Collapse title="View Answer">
+  <Success>d60dff40.lock</Success>
+</Collapse>
+
+---
+
+#### **Question 13: The user downloaded a decryptor hoping to decrypt all the files, but he failed. Provide the MD5 hash of the decryptor file.**
+
+On the user’s Desktop, locate the file named `d.e.c.r.yp.to.r.exe`. Double-click it to view its details, including the MD5 hash:
+
+![Decryptor MD5 Hash](/Revil-corp/q12.PNG)
+
+<Collapse title="View Answer">
+  <Success>f617af8c0d276682fdf528bb3e72560b</Success>
+</Collapse>
+
+---
+
+#### **Question 14: What is the full URL from which the decryptor was downloaded?**
+
+In Redline, navigate to **Browser URL History** and search for `decr`. You’ll find the URL used to download the decryptor:
+
+![Decryptor URL](/Revil-corp/q13.PNG)
+
+<Collapse title="View Answer">
+  <Success>http://decryptor.top/644E7C8EFA02FBB7</Success>
+</Collapse>
+
+---
+
+#### **Question 15: What are some three names associated with the malware which infected this host? (enter the names in alphabetical order)**
+
+Perform external research using the MD5 hash from Question 5. A quick search reveals that the malware is associated with the REvil ransomware family:
+
+![REvil Malware](/Revil-corp/q14.PNG)
+
+<Collapse title="View Answer">
+  <Success>REvil, Sodin, Sodinokibi</Success>
+</Collapse>
+
+---
+
+This concludes the walkthrough for the REvil Corp incident response challenge. Happy hunting!
