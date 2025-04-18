@@ -1,0 +1,452 @@
+---
+title: "SOC L1 Alert Reporting"
+description: "Learn how to properly report, escalate, and communicate about high-risk SOC alerts."
+image: /alert/icon.jpeg
+pubDate: 2025-04-28
+categories:
+  - SOC
+---
+
+## TryHackMe Room: SOC L1 Alert Reporting – Walkthrough & Deep Dive
+
+Room URL: [SOC L1 Alert Reporting Room](https://tryhackme.com/room/socl1alertreporting)  
+Simulator: [SOC Simulator](https://tryhackme.com/soc-sim)  
+Prerequisite: Completion of [SOC L1 Alert Triage Room](https://tryhackme.com/room/socl1alerttriage)
+
+---
+
+### 🧠 Objectives
+
+- Understand the need for SOC alert reporting and escalation.
+- Learn how to write alert comments or case reports properly.
+- Explore escalation methods and communication best practices.
+- Apply this knowledge to triage alerts in a simulated environment.
+
+Before diving into this room, it's important to review the basics of **common cyberattacks** and **SOC Level 1 responsibilities**.
+
+---
+
+###🔥 Common Cyberattacks
+
+| Attack Type                     | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------------|
+| **Phishing**                    | Fake emails crafted to steal credentials or deliver malware.               |
+| **Malware**                     | Malicious software like ransomware, trojans, and keyloggers.               |
+| **Web Shells**                  | Attacker-installed backdoors on web servers.                               |
+| **Brute Force Attacks**         | Repeated login attempts to guess passwords.                                |
+| **Command & Control (C2)Q**      | Systems reaching out to attacker infrastructure to receive commands.       |
+| **Privilege Escalation**        | Attempts to gain higher-level system or domain privileges.                 |
+| **Lateral Movement**            | Moving through the network post-compromise.                                |
+| **Data Exfiltration**           | Theft of sensitive or critical data.                                       |
+| **Suspicious PowerShell Activity** | Often linked to initial access or defense evasion tactics.                |
+| **Domain Discovery/Enumeration** | Reconnaissance of AD/domain (e.g., `whoami`, `net user`, `Get-ADUser`).    |
+
+---
+
+### 🛡️ SOC L1 Responsibilities
+
+| Task                 | Description                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| **Alert Monitoring** | Monitor SIEM platforms (e.g., Microsoft Sentinel, Splunk) for real-time alerts. |
+| **Initial Triage**   | Validate the alert’s severity, confirm or dismiss false positives/negatives.  |
+| **Data Collection**  | Collect logs, screenshots, and related event details.                          |
+| **Incident Classification** | Categorize events (e.g., phishing, malware, C2).                     |
+| **Escalation**       | Forward verified or suspicious alerts to L2 with proper context.               |
+| **Basic Containment**| (If permitted) Actions like isolating endpoints or disabling accounts.        |
+| **User Communication**| Notify end users (e.g., regarding phishing attempts or security awareness). |
+| **Documentation**    | Record all actions, timelines, and outcomes in ticketing or reporting tools.   |
+
+---
+
+### 🧩 SOC Alert Lifecycle
+
+1. **Alert Reception**  
+   SOC L1 analysts receive alerts through SIEM, EDR, or ticket management platforms.
+
+2. **Triage & Filtering**  
+   Most alerts are either:
+   - Closed as false positives, or
+   - Resolved at the L1 level.
+
+3. **Escalation**  
+   Complex or high-risk alerts are escalated to the L2 team, who handle in-depth investigation and remediation.
+
+To successfully escalate incidents, it's essential to understand and apply the principles of:
+
+- **Reporting** – Writing clear and informative alert summaries and case notes.
+- **Escalation** – Properly handing off alerts to higher tiers with complete context.
+- **Communication** – Maintaining professionalism and clarity when interacting with team members and end-users.
+
+---
+
+**Let’s now explore how to effectively report and escalate alerts through the simulated SOC environment.**
+
+### 🧾 Alert Reporting, Escalation & Communication in SOC
+
+![SOC Process](/alert/1.svg)
+
+---
+
+### 🔍 Alert Reporting
+
+When you're working as a SOC Level 1 analyst, not every alert you get needs to be passed on but when one *does*, it's crucial that you **report it properly**.
+
+- If it's a simple false positive, a short comment might do.
+- But if it’s a **True Positive** (i.e., a real threat), you need to **write a detailed report**.
+
+Think of it like this: you're telling a story of what happened — when the alert came in, what you found, the evidence you gathered (logs, screenshots, IPs, hashes, etc.), and what you think is going on. This helps whoever picks it up next (usually L2) to understand the situation without starting from scratch.
+
+### 🔧 Tips for a good report:
+- Be clear and to the point.
+- Include timestamps, affected systems, and anything unusual.
+- Mention any steps you've already taken (e.g., blocked IP, disabled user).
+- Use screenshots/log snippets if it helps clarify things.
+
+---
+
+### ⏫ Alert Escalation
+
+Once you’ve confirmed that the alert is a **True Positive** and it's beyond your level (needs deeper investigation, containment, or remediation), you **escalate it to L2**.
+
+Escalation isn’t just about saying "hey, take this" it's about handing off a **clear, well-documented case**.
+
+Your alert report is now super useful — L2 can read it and immediately understand what’s happening, instead of going through the logs all over again.
+
+### 🪜 How to escalate:
+- Follow your team's standard operating procedure (SOP).
+- Use the ticketing system or escalation tool your SOC uses.
+- Tag or notify the correct person/team if needed.
+
+---
+
+### 💬 Communication
+
+Sometimes, being a SOC analyst isn’t just sitting behind a screen you might need to **talk to other departments**.
+
+Let’s say:
+- You notice a user suddenly has admin rights. You ping **IT**: “Hey, did you approve this?”
+- Or, you’re seeing weird behavior from a new account. You check in with **HR**: “Is this a new employee?”
+
+### 📌 Best practices:
+- Be polite and professional.
+- Keep things short but clear.
+- Explain why you're asking (without dumping technical jargon).
+- Document what they tell you  it might be useful later.
+
+---
+
+### 🔁 Wrapping it up
+
+Being a great SOC L1 analyst isn’t just about spotting threats it’s also about **communicating, documenting, and collaborating**. Your reports help the next person do their job better, your escalations save time, and your communication keeps everyone on the same page.
+
+### 📄 Why L1 Analysts Should Write Alert Reports
+
+![Why Reporting Matters](/alert/2.svg)
+
+---
+
+### ✍️ So... why should L1 analysts write reports?
+
+You might be thinking  “Why write a report? Isn’t marking something as a True Positive or False Positive enough?”
+
+Well, it turns out that writing alert reports is **super important**  for a few big reasons:
+
+| **Purpose**                 | **Why It Matters**                                                                 |
+|----------------------------|------------------------------------------------------------------------------------|
+| 🧠 Provide context for L2   | Saves L2 analysts tons of time and helps them immediately get the bigger picture.  |
+| 📚 Save findings forever    | SIEM logs get deleted after a few months. But reports stick around much longer.    |
+| 📈 Boost your skills        | Writing helps you think clearly and if you can explain it well, you truly get it.|
+
+---
+
+### 📋 Example Report Format  Use the "5 Ws"
+
+When you're writing a report, think like someone who wasn’t there during the alert. You want to give them just enough detail to understand what happened no more, no less.
+
+We recommend using the **Five Ws**  a simple way to structure your report like a story:
+
+### 👤 Who
+Who did the thing? A specific user account, service account, etc.
+
+> Example: `jane.doe@company.com` logged in at midnight.
+
+---
+
+### 🔍 What  
+What happened? Describe the suspicious activity or behavior clearly.
+
+> Example: The user attempted to access a restricted file 12 times in 3 minutes.
+
+---
+
+### 🕒 When  
+When did it occur? Include date, time, and timezone if possible.
+
+> Example: Started at `2025-04-18 00:03 UTC`, ended at `00:05 UTC`.
+
+---
+
+### 🌐 Where  
+Where did it happen? Point out devices, IPs, locations, etc.
+
+> Example: It came from IP `192.168.1.22` (user’s workstation in Lagos office).
+
+---
+
+### ❓ Why  
+Why is this suspicious? What's your reasoning for calling it a True or False Positive?
+
+> Example: This login is abnormal for the user (usually works 9-5), and the file accessed is finance-related high risk.
+
+---
+
+### ✅ Final Thoughts
+
+Alert reporting isn’t just paperwork  it’s part of what makes SOC teams fast and efficient. It helps you think more critically, gives L2 what they need, and ensures nothing gets lost in the noise.
+
+So next time you get an alert, don’t just click True Positive or False Positive **tell the story**.
+
+
+### 🕵️ SOC L1 Alert Reporting – Q&A
+
+---
+
+Q1. According to the SOC dashboard, which user email leaked the sensitive document?
+
+The user who violated the security policy and attempted to leak a sensitive document is none other than:
+
+**`m.boslan@tryhackme.thm`**
+
+This is clearly shown in the SOC L1 comment from the alert triage, as seen in the image below:
+
+![User Violation](/alert/q1.PNG)
+
+The user tried to download the entire HR folder to their laptop but was successfully blocked by the DLP (Data Loss Prevention) solution.
+
+---
+
+Q2. Looking at the new alerts, who is the "sender" of the suspicious, likely phishing email?
+
+Now let's examine the two new alerts marked as `Waiting Action`, shown in the image below:
+
+![Waiting Action Alerts](/alert/action.PNG)
+
+We focus on the phishing alert and check its details:
+
+![Phishing Alert Details](/alert/p.PNG)
+
+According to the alert data, the sender is:
+
+**`support@microsoft.com`**
+
+At first glance, this looks like a legitimate Microsoft address — but it might still be a spoofed or fake domain. We need to check the headers and behavior to confirm whether it’s safe or malicious.
+
+---
+
+Q3. Open the phishing alert, read its details, and try to understand the activity. Using the Five Ws template, what flag did you receive after writing a good report?
+
+Now we take action on the phishing alert. If it turns out to be **malicious**, we **escalate** it to L2. If it's a **false positive**, we **close** it  but not before writing a solid comment using the **Five Ws** format.
+
+Here’s the screenshot from the process:
+
+![Editing and Closing Alert](/alert/edit.PNG)
+
+We assigned the alert to ourselves and, after analyzing the behavior, determined it posed **no security risk**. So we closed it with a well-written comment.
+
+The alert was flagged as a **false positive**.
+
+---
+
+
+###🛡️ SOC L1 Escalation Guide 
+
+When you're working as an L1 (Level 1) SOC Analyst, one of your jobs is to decide whether to **escalate an alert to L2** (Level 2 Analysts). Let’s break down when and how to do it in a clear, simple way.
+
+---
+
+### 🚨 When Should You Escalate an Alert?
+
+Here are the main reasons to pass an alert to L2:
+
+- **It's serious**: If it looks like a **big cyberattack** (like malware, data theft, or hacking), it needs more digging.
+- **Action is needed**: If the alert means someone needs to **remove malware**, **isolate a device**, or **reset a password**.
+- **You need backup**: If you're **not totally sure** about the alert and need a more experienced analyst to help.
+- **Outside communication is needed**: If someone needs to contact **customers**, **partners**, **management**, or even **law enforcement**.
+
+---
+
+### 🔁 How Do You Escalate?
+
+Most of the time, this is what you do:
+
+1. **Write a proper report** with your analysis and what you think is going on.
+2. **Set the alert status to “In Progress”**.
+3. **Assign it to the L2 analyst** who's on shift.
+4. **Ping them** via corporate chat or tell them directly.
+
+> ✅ In some teams, you might have to fill out a full escalation form with extra details. It depends on the organization.
+
+Once L2 gets your alert, they will:
+- Read your report
+- Dig deeper into the alert
+- Confirm if it’s really a threat
+- Contact others if needed
+- Start the formal **Incident Response** process if it’s a big deal
+
+---
+
+### 🖼️ Visual Walkthrough
+
+#### 1. SOC Dashboard Escalation Procedure
+
+Here’s what the step-by-step process looks like:
+
+![SOC Dashboard Escalation Procedure](/alert/Esc-to-L2.svg)
+
+---
+
+#### 2. Escalating Threats to L2
+
+In this case, L1 noticed a **phishing alert** and passed it to L2. L2 then **reset the user’s credentials**.
+
+---
+
+#### 3. Requesting Help from L2
+
+Sometimes you may not know how to handle something. So, just ask for help:
+
+![Requesting L2 Support](/alert/Req-to-L2.svg)
+
+> In this case, L1 asked L2 for help. L2 provided **support and shared knowledge** in return.
+
+---
+
+### 🎯 Final Tips
+
+- Don’t be afraid to escalate  it’s better to **ask for help** than to miss something serious.
+- Always write a clear report. It makes L2's job easier and shows you understand the alert.
+- Follow your team’s process and **communicate clearly**.
+
+Q4. Who is your current L2 in the SOC dashboard that you can assign (escalate) the alerts to?
+
+Looking at the SOC dashboard, the current L2 analyst available for escalation is:
+
+**`E.Fleming`**
+
+---
+
+Q5. What flag did you receive after correctly escalating the alert from the previous task to L2?
+
+To escalate the alert properly, we need to update the previous alert (the phishing email one) that we initially closed. Now we’ll change a few things and escalate it to L2.
+
+Here's what we need to do (refer to the screenshot below):
+
+![Escalate Alert](/alert/esc.PNG)
+
+**Fields to update:**
+- `Verdict` → Change from **False Positive** to **True Positive**
+- `Status` → Change from **Closed** to **In Progress**
+- `Assignee` → Assign the alert to **E.Fleming**
+
+After updating and saving these changes, we receive the flag as confirmation.
+
+---
+
+#### Q6. Now, investigate the second new alert in the queue and provide a detailed alert comment.
+Then, decide if you need to escalate this alert and move on according to the process.
+
+Let’s analyze the second new alert, as shown in the image below:
+
+![New Alert Q6](/alert/q6.PNG)
+
+Upon reviewing the alert and event details, it becomes clear that this is a **compromise** — a legitimate security threat.
+
+Since it’s a serious case, we escalate it to L2.
+
+Here’s the final action we take:
+
+- Write a clear and complete alert comment using the **Five Ws** (Who, What, When, Where, Why)
+- Change the `Verdict` to **True Positive**
+- Set `Status` to **In Progress**
+- Assign the alert to **E.Fleming**
+
+Here’s how the completed alert form looks:
+
+![Completed Q6 Alert](/alert/q6ans.PNG)
+
+After saving the alert, we receive the final **flag** as confirmation that our triage and escalation were successful.
+
+---
+
+### SOC Communication 
+
+Even though escalation and reporting might sound pretty easy on paper, things don't always go as planned. You need to be ready for tricky situations and know what to do when things go wrong.
+
+Ideally, your SOC (Security Operations Center) should have **Crisis Communication procedures** – basically, a guide that tells you what steps to follow when things get chaotic. If such a guide doesn’t exist in your team, don’t worry – just make sure you learn from the following real-world examples so you’re always ready.
+
+---
+
+### 🧠 Common Situations and How to Handle Them
+
+#### 🔴 1. You have a critical alert but L2 is missing for 30 minutes
+**What to do:**  
+Don't panic. First, try to **call L2 directly**. If they don’t pick up, go up the chain:
+- Try **L3**
+- If no luck, **contact your manager**
+
+**Pro tip:** Always know where to find emergency contact details.
+
+---
+
+#### 💬 2. A Slack or Teams account might be compromised
+**What to do:**  
+Don’t message the user through the chat platform that's potentially compromised!  
+Instead, **call the user or email them from a secure source**. Use any method that isn't connected to the compromised platform.
+
+---
+
+#### ⚠️ 3. You’re drowning in alerts, and some look serious
+**What to do:**  
+Prioritize your work. Focus on **critical alerts first** based on your SOC workflow.  
+At the same time, **let your L2 know** that the queue is overloaded you might need help!
+
+---
+
+#### 🤯 4. You realize days later that you might’ve missed something bad
+**What to do:**  
+Reach out to your L2 **immediately**.  
+Even if it’s been a few days, it’s better to report it now — threat actors often stay hidden before making their move. Don’t wait.
+
+---
+
+#### 🧩 5. SIEM logs aren't showing up right or can’t be searched
+**What to do:**  
+Still investigate the alert as much as you can with the info available.  
+**Don’t ignore it.** Then, report the issue to your L2 or your SOC engineer.
+
+---
+
+### 🧑‍💼 Communication from L2 Side
+
+Here’s an example of what happens when L2 takes action:
+
+- You (L1) escalate a **data leak alert**
+- L2 picks it up, **starts a digital forensics investigation**, and gets in touch with **legal and PR teams**
+
+![Communication by L2](/alert/com-by-L2.svg)
+
+---
+
+### 📝 Questions and Answers
+
+**Q: Should you first try to contact your manager in case of a critical threat?**  
+**Answer:** ❌ **Nay**  
+**Explanation:** You should **first try to reach L2**, then L3. Your manager comes last in the chain.
+
+---
+
+**Q: Should you immediately contact your L2 if you think you missed the attack?**  
+**Answer:** ✅ **Yea**  
+**Explanation:** Even if it’s been days, it’s better to **let L2 know right away**. That way, they can investigate further and maybe stop something bad from happening.
+
+---
